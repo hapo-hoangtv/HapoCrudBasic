@@ -27,11 +27,17 @@
         <td>{{ $value['email'] }}</td>
         <td>{{ $value['phone'] }}</td>
         <td><img src="{{ asset($value['avatar']) }}" width="100px"></td>
-        <td><a href="users/edit/{{ $value['id'] }}">Sửa</a></td>
-        <td><a href="users/delete/{{ $value['id'] }}">Xóa</a></td>
+        <td><a href="{{ route('users.edit', $value['id']) }}">Sửa</a></td>
+        <td>
+            <form action="{{ route('users.destroy', $value['id']) }}" method="post">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa ?')">Xóa</button>
+            </form>
+        </td>     
     </tr>
     <?php endforeach ?>
-    <tr><td colspan="7"><a href="users/create">Thêm sinh viên mới</a><td></tr>
+    <tr><td colspan="7"><a href="{{ route('users.create') }}">Thêm sinh viên mới</a><td></tr>
     </tbody>
     </table> 
     {{ $userlist->links() }}

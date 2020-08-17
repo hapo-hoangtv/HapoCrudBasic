@@ -3,7 +3,7 @@
 @section('main')
 <div class="col-xl-4 col-xl-offset-4 container">
     <center><h2>Thêm sinh viên</h2></center>
-    <form action ="{{ Route('users.store') }}" method="post" enctype="multipart/form-data" id="">
+    <form action ="{{ route('users.store') }}" method="post" enctype="multipart/form-data" id="">
     @csrf 
     <div class="form-group">
         <label for="tensinhvien">Tên sinh viên</label>

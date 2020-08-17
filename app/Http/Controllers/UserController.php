@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
-    public function showUser() {
+    public function index() {
         $userlist = UserList::paginate(config('variable.paginate'));
         return view('user_forms.userlist', compact('userlist'));
     }
     
-    public function createUser() {
+    public function create() {
         return view('user_forms.create');
     }
 
@@ -28,7 +28,7 @@ class UserController extends Controller
         return $fileToStore;
     }
 
-    public function storeUser(UserRequest $request) {
+    public function store(UserRequest $request) {
         $fileNameToStore = '';
         if($request->hasFile('avatar')) {
             $fileNameToStore = $this->uploadImageAvatar($request->file('avatar'));
@@ -43,12 +43,12 @@ class UserController extends Controller
         return redirect('users')->with('message', __('messages.success.add'));
     }
 
-    public function editUser($id) {
+    public function edit($id) {
         $us = UserList::findOrFail($id)->toArray();
         return view('user_forms.edit', compact('us'));
     }
   
-    public function updateUser(UserRequest $request) {
+    public function update(UserRequest $request) {
         $data = [ 
             'name' => $request->name,
             'address' => $request->address,
@@ -63,8 +63,13 @@ class UserController extends Controller
         return redirect('users')->with('message', __('messages.success.edit'));
     }
     
-    public function destroyUser($id) {
+    public function destroy($id) {
         UserList::findOrFail($id)->delete();
         return redirect('users');
     }
+
+    // public function show($id) {
+    //     $userlist = UserList::findOrFail($id);
+    //     return view('user_forms.userlist', compact('userlist'));
+    // }
 }

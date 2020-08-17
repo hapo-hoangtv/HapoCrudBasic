@@ -3,8 +3,8 @@
 @section('main')
     <div class="col-xl-4 col-xl-offset-4 container">
         <center><h2>Sửa thông tin sinh viên</h2></center>
-        <form action ="users/update/{{ $us['id'] }}" method="post"enctype="multipart/form-data">
-        
+        <form action ="{{ route('users.update', $us['id']) }}" method="post"enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <input type="hidden" class="form-control" id="" name="id" value="{{ $us['id'] }}"/>
             <div class="form-group">

@@ -13,10 +13,9 @@ class UserList extends Model
     protected $fillable = ['name','address','email','phone','avatar'];
 
     use SoftDeletes;
-
+    
     public function deleteUserList($id)
     {
-        # code...
         return UserList::query()->where('id', $id)->delete();
     }
 }
