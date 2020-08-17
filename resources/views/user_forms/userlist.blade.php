@@ -19,14 +19,14 @@
         </tr>
     </thead>
     <tbody>
-    <?php $stt=0; foreach ($userlist as $value): $stt++ ?>
+    <?php $stt=0; foreach ($us as $value): $stt++ ?>
     <tr>
         <td>{{ $stt }}</td>
         <td>{{ $value['name'] }}</td>
         <td>{{ $value['address'] }}</td>
         <td>{{ $value['email'] }}</td>
         <td>{{ $value['phone'] }}</td>
-        <td><img src="{{ asset($value['avatar']) }}" width="100px"></td>
+        <td><img src="{{ asset('./storage/avatar/'.$value['avatar']) }}" width="100px"></td>
         <td><a href="{{ route('users.edit', $value['id']) }}">Sửa</a></td>
         <td>
             <form action="{{ route('users.destroy', $value['id']) }}" method="post">
@@ -40,5 +40,5 @@
     <tr><td colspan="7"><a href="{{ route('users.create') }}">Thêm sinh viên mới</a><td></tr>
     </tbody>
     </table> 
-    {{ $userlist->links() }}
+    {{ $us->links() }}
 @endsection

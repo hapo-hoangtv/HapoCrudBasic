@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label for="avatar">Avatar</label>
                 <input type="file" class="form-control" id="upload_file_avatar" name="avatar" placeholder="Avatar"/><br>
-                <img class="img-preview" src="{{ asset($us['avatar']) }}" alt="" width="150px">
+                <img class="img-preview" src="{{ asset('./storage/avatar/'.$us['avatar']) }}" alt="" width="150px">
                 @if ($errors->has('avatar'))
                 <div class="alert alert-danger">
                     {{ $errors->first('avatar') }}
