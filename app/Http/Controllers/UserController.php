@@ -67,9 +67,4 @@ class UserController extends Controller
         UserList::findOrFail($id)->delete();
         return redirect('users');
     }
-
-    // public function show($id) {
-    //     $userlist = UserList::findOrFail($id);
-    //     return view('user_forms.userlist', compact('userlist'));
-    // }
 }
