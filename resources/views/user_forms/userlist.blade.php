@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-    <?php $stt=0; foreach ($us as $value): $stt++ ?>
+    <?php $stt=0; foreach ($user as $value): $stt++ ?>
     <tr>
         <td>{{ $stt }}</td>
         <td>{{ $value['name'] }}</td>
@@ -40,5 +40,5 @@
     <tr><td colspan="7"><a href="{{ route('users.create') }}">Thêm sinh viên mới</a><td></tr>
     </tbody>
     </table> 
-    {{ $us->links() }}
+    {{ $user->links() }}
 @endsection

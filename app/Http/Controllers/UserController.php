@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function index() {
-        $us = UserList::paginate(config('variable.paginate'));
-        return view('user_forms.userlist', compact('us'));
+        $user = UserList::paginate(config('variable.paginate'));
+        return view('user_forms.userlist', compact('user'));
     }
     
     public function create() {
@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function uploadImageAvatar($image) {
         $avatar = uniqid(). "_" .$image->getClientOriginalName();
-        $image->storeAs('public/avatar/', $avatar);
+        $image->storeAs(config('variable.link'), $avatar);
         return $avatar;
     }
 
@@ -45,21 +45,21 @@ class UserController extends Controller
     }
         
     public function edit($id) {
-        $us = UserList::findOrFail($id);
-        return view('user_forms.edit', compact('us'));
+        $user = UserList::findOrFail($id);
+        return view('user_forms.edit', compact('user'));
     }
 
     public function update(UserRequest $request, $id)
     {
         $data = $request->all();
-        $us = UserList::find($id);
+        $user = UserList::find($id);
         if ($request->hasFile('avatar')) {
+            $image = $user->avatar;
+            Storage::delete(config('variable.link').$image); 
             $avatar = $this->uploadImageAvatar($request->file('avatar'));
-            $image = $us->avatar;
-            Storage::delete('public/avatar/'.$image);    
             $data['avatar'] = $avatar;
         }
-        $us->update($data);
+        $user->update($data);
         return redirect('users')->with('message', __('messages.success.edit'));
     }
   

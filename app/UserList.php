@@ -16,6 +16,6 @@ class UserList extends Model
     
     public function deleteUserList($id)
     {
-        return UserList::query()->where('id', $id)->delete();
+        return UserList::where('id', $id)->delete();
     }
 }

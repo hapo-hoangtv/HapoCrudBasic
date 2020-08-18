@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\UserList; 
+
 class UserListSeeder extends Seeder
 {
     /**
@@ -27,6 +28,6 @@ class UserListSeeder extends Seeder
             'avatar' => 'https://thuthuatnhanh.com/wp-content/uploads/2018/07/anh-dai-dien-boy-cam-kiem-samurai-kyo.jpg',
         ],
         ];
-        DB::table('user_lists')->insert($data);
+        UserList::create($data);
     }
 }
