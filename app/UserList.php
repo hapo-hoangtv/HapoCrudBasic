@@ -10,7 +10,9 @@ class UserList extends Model
 {
     protected $table = 'user_lists';
     public $timestamps = false; 
-    protected $fillable = ['name','address','email','phone','avatar'];
+    protected $fillable = [
+        'name','address','email','phone','avatar'
+    ];
 
     use SoftDeletes;
     
@@ -19,3 +21,4 @@ class UserList extends Model
         return UserList::where('id', $id)->delete();
     }
 }
+
